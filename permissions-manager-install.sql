@@ -507,11 +507,11 @@ GO
 
 
 --If our procedure doesn't already exist, create one with a dummy query to be overwritten.
-IF OBJECT_ID('perms.createSeverSnapshot') IS NULL
-  EXEC sp_executesql N'CREATE PROCEDURE perms.createSeverSnapshot AS SELECT 1;';
+IF OBJECT_ID('perms.createServerSnapshot') IS NULL
+  EXEC sp_executesql N'CREATE PROCEDURE perms.createServerSnapshot AS SELECT 1;';
 GO
 
-ALTER PROCEDURE [perms].[createSeverSnapshot]
+ALTER PROCEDURE [perms].[createServerSnapshot]
 
 AS
 
@@ -529,8 +529,8 @@ AS
 			NONE
 
 	Usage:	
-			--Take a Permissions Snapshot of this SQL Sever
-			EXEC [perms].[createSeverSnapshot];
+			--Take a Permissions Snapshot of this SQL Server
+			EXEC [perms].[createServerSnapshot];
 ***************************************************************************/
 
 BEGIN
@@ -1472,7 +1472,7 @@ AS
 			NONE
 
 	Usage:	
-			--Take a Permissions Snapshot of this SQL Sever
+			--Take a Permissions Snapshot of this SQL Server
 			EXEC [perms].[snapshotEverything];
 ***************************************************************************/
 
@@ -1480,7 +1480,7 @@ BEGIN
 	
 	SET NOCOUNT ON;
 	--snapshot the server permissions
-	EXEC [perms].[createSeverSnapshot];
+	EXEC [perms].[createServerSnapshot];
 	--snapshot all of the database permissions
     EXEC [perms].[snapshotAllDatabases];
 
